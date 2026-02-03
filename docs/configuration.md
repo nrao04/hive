@@ -86,6 +86,8 @@ Agent behavior is defined in `agent.json` (or constructed in `agent.py`):
 }
 ```
 
+**Hard constraint enforcement:** Goals can define constraints with `constraint_type: "hard"` and an optional `check` expression (e.g. `"'forbidden' not in str(result.get('content', ''))"`). The executor validates the final output against these constraints before returning success; if any hard constraint is violated, the run returns `success=False` with an error describing the violation. Constraints with an empty `check` or `"llm_judge"` are skipped in this pass.
+
 See the [Getting Started Guide](getting-started.md) for building agents.
 
 ## MCP Server Configuration
